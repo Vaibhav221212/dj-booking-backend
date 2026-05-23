@@ -13,7 +13,7 @@ router.get("/getUser",checkUser,getUser)
 router.post("/sendOtpRegister",sendOtpRegister)
 router.post("/reset-password",resetPassword)
 router.patch("/update-password",updatePassword)
-router.post("/check-response",check)
+router.get("/check-response",check)
 
 router.get("/get-response",(req,res)=>
     {    
