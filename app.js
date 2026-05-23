@@ -23,6 +23,7 @@ app.use(
 app.get(req,res)=>
 {
   res.send("hello")
+}
 app.use(userRutes);
 app.use(djRoutes);
 app.use(bookingRoutes);
