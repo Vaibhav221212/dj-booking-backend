@@ -3,14 +3,8 @@ import dbConnect from "./db/db.js";
 import dns from "dns";
 dns.setDefaultResultOrder("ipv4first");
 
-async function startServer()
-{
-  app.listen(process.env.PORT || 500 , () => {
-  console.log("server running");
+dbConnect().then(() => {
+  app.listen(3000, () => {
+    console.log("Server running");
+  });
 });
-   console.log("server started")
-}
-
-
-dbConnect()
-startServer()
