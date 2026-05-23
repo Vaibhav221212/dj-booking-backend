@@ -134,6 +134,7 @@ const sendOtpRegister = async (req, res) => {
       message: "email verification sent successfully",
     });
   } catch (e) {
+       console.log(e.message)
     return res.json({
       success: false,
       message: e.message,
