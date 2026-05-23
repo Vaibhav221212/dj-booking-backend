@@ -375,7 +375,7 @@ return res.json({
 }
 
 };
-const check=(req,res)=>
+const check=async(req,res)=>
 {
    await transporter.sendMail({
       from: "DJ Booking from Dj_BABUU",
