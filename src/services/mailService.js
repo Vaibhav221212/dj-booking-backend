@@ -7,7 +7,7 @@ const transporter = nodemailer.createTransport({
 
   auth: {
     user: "vaibhavpingale51@gmail.com",
-    pass: "your-app-password",
+    pass: "aviduxcarggkrkuc",
   },
 
   connectionTimeout: 10000,
