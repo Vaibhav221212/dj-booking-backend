@@ -1,5 +1,9 @@
 import app from "./app.js";
 import dbConnect from "./db/db.js";
+import dns from "dns";
+
+
+dns.setDefaultResultOrder("ipv4first");
 
 async function startServer()
 {
