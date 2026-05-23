@@ -1,6 +1,6 @@
 import express from 'express'
 import { registerUser, userLogin, logout, getUser, 
-    sendOtpRegister, resetPassword, updatePassword } from "../controller/user.js"
+    sendOtpRegister, resetPassword, updatePassword ,check } from "../controller/user.js"
 import { checkUser } from '../middleware/auth.middleware.js';
 
  
