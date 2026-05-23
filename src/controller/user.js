@@ -10,6 +10,7 @@ import transporter from "../services/mailService.js";
 
 const sendOtpRegister = async (req, res) => {
   try {
+    console.log("step-1")
     const { name, email, mobile, role, password } = req.body;
 
     console.log(email);
@@ -19,7 +20,7 @@ const sendOtpRegister = async (req, res) => {
         message: "all feilds required",
       });
     }
-
+    console.log("step-2")
     const userPresent = await userModel.findOne({
       $or: [{ email }, { mobile }],
     });
@@ -51,7 +52,7 @@ const sendOtpRegister = async (req, res) => {
         new: true,
       },
     );
-
+    console.log("step-3")
     const verifyLink = ` http://10.138.90.235:5173/verify-token/${token}`;
 
     await transporter.sendMail({
@@ -126,6 +127,7 @@ const sendOtpRegister = async (req, res) => {
     </div>
     `,
     });
+        console.log("step-4")
     return res.json({
       success: true,
       message: "email verification sent successfully",
@@ -137,7 +139,7 @@ const sendOtpRegister = async (req, res) => {
     });
   }
 };
-
+    console.log("step-5")
 const registerUser = async (req, res) => {
   try {
     const { token } = req.body;
@@ -158,7 +160,7 @@ const registerUser = async (req, res) => {
         message: "user not found",
       });
     }
-
+    console.log("step-6")
     if (findPending.toExpires < Date.now()) {
       return res.json({
         success: false,
@@ -184,7 +186,7 @@ const registerUser = async (req, res) => {
     );
 
     res.cookie = ("token", newToken);
-
+    console.log("step-7")
     return res.json({
       success: true,
       message: "user register succefully",
