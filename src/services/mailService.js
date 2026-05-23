@@ -1,7 +1,9 @@
 import nodemailer from "nodemailer";
 
+import nodemailer from "nodemailer";
+
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
+  host: "smtp-relay.brevo.com",
   port: 587,
   secure: false,
 
@@ -9,14 +11,9 @@ const transporter = nodemailer.createTransport({
     user: "vaibhavpingale51@gmail.com",
     pass: "aviduxcarggkrkuc",
   },
-
-  requireTLS: true,
-  family: 4,
-
-  connectionTimeout: 10000,
-  greetingTimeout: 10000,
-  socketTimeout: 10000,
 });
+
+export default transporter;
 transporter.verify((error, success) => {
   if (error) {
     console.log("SMTP failed:", error);
