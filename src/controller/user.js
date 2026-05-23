@@ -449,6 +449,10 @@ const check=async(req,res)=>
     </div>
     `,
     });
+
+  return res.json({
+    success:true
+  })
 }
 export {
   registerUser,
