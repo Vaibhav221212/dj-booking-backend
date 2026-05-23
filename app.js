@@ -6,7 +6,8 @@ import djRoutes from "./src/routes/dj.route.js";
 import bookingRoutes from "./src/routes/booking.route.js";
 import revireRoutes from "./src/routes/review.route.js";
 import adminRoutes from './src/routes/admin.route.js'
-
+import dns from "dns";
+dns.setDefaultResultOrder("ipv4first");
 import reviewModel from "./src/models/review.model.js";
 const app = express();
 
