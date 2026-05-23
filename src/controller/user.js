@@ -238,7 +238,7 @@ const userLogin = async (req, res) => {
       success: true,
       message: "login sucessfully",
       user: user,
-      role:user.role
+      role:user
     });
   } catch (e) {
     console.log(e);
