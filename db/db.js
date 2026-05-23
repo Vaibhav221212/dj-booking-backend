@@ -1,5 +1,5 @@
 
-import mognoose  from 'mongoose'
+import mongoose  from 'mongoose'
 
 async function dbConnect()
 {
