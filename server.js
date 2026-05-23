@@ -3,7 +3,7 @@ import dbConnect from "./db/db.js";
 
 async function startServer()
 {
-  app.listen(3000, "0.0.0.0", () => {
+  app.listen(process.env.PORT || 500 , () => {
   console.log("server running");
 });
    console.log("server started")
