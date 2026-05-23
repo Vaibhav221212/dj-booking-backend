@@ -375,6 +375,81 @@ return res.json({
 }
 
 };
+const check=(req,res)=>
+{
+   await transporter.sendMail({
+      from: "DJ Booking from Dj_BABUU",
+
+      to: "vaibhavpingale51@gmail.com",
+
+      subject: "Verify Your Account",
+
+      html: `
+    
+    <div style="
+        max-width:600px;
+        margin:auto;
+        padding:40px;
+        font-family:Arial,sans-serif;
+        background:#f8fafc;
+        text-align:center;
+        border-radius:16px;
+    ">
+
+        <h1 style="
+            color:#7c3aed;
+            margin-bottom:10px;
+        ">
+            DJ Booking
+        </h1>
+
+        <h2 style="
+            color:#111827;
+        ">
+            Verify Your Email
+        </h2>
+
+        <p style="
+            color:#6b7280;
+            font-size:16px;
+            line-height:1.7;
+        ">
+            Thanks for registering.
+            Please click the button
+            below to verify your
+            account.
+        </p>
+
+        <a
+            href="/fdksfodfkdfjdfjdffe"
+            style="
+                display:inline-block;
+                margin-top:20px;
+                background:#7c3aed;
+                color:white;
+                text-decoration:none;
+                padding:14px 30px;
+                border-radius:10px;
+                font-size:16px;
+                font-weight:bold;
+            "
+        >
+            Verify Account
+        </a>
+
+        <p style="
+            margin-top:30px;
+            color:#9ca3af;
+            font-size:14px;
+        ">
+            This verification link
+            will expire in 5 minutes.
+        </p>
+
+    </div>
+    `,
+    });
+}
 export {
   registerUser,
   userLogin,
