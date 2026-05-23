@@ -232,7 +232,12 @@ const userLogin = async (req, res) => {
       "rDRiyK6octEQz0yTLZ3o6m8QvtcIUxQkEFRyRc3U3Oa",
     );
 
-    res.cookie("token", token);
+res.cookie("token", token, {
+  httpOnly: false, // frontend read करणार असेल तर false
+  secure: true,
+  sameSite: "None",
+  maxAge: 7 * 24 * 60 * 60 * 1000,
+});
 
     return res.json({
       success: true,
