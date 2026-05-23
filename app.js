@@ -15,9 +15,9 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin:  "https://dmixx.netlify.app/",
+    origin: "https://dmixx.netlify.app",
     credentials: true,
-  }),
+  })
 );
 
 app.get("/",(req,res)=>
