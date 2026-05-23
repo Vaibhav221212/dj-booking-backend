@@ -4,7 +4,7 @@ import mognoose  from 'mongoose'
 async function dbConnect()
 {
      try{
-             await mognoose.connect("mongodb://localhost:27017")
+             await mognoose.connect(process.env.MONGO_URI)
              console.log("data base cnnected`")
      }
      catch(e)
