@@ -457,5 +457,6 @@ export {
   getUser,
   sendOtpRegister,
   resetPassword,
-  updatePassword
+  updatePassword,
+  check
 };
