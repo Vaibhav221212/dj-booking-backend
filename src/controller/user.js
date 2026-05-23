@@ -21,11 +21,7 @@ const sendOtpRegister = async (req, res) => {
       });
     }
     console.log("step-2")
-    console.log("user-info:",name,
-        email,
-        mobile,
-        token,
-        password,)
+    console.log("user-info:",name, email,mobile,role,password,)
     const userPresent = await userModel.findOne({
       $or: [{ email }, { mobile }],
     });
