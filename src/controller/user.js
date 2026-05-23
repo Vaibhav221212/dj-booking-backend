@@ -54,6 +54,22 @@ const sendOtpRegister = async (req, res) => {
       },
     );
      console.log("step-3")
+
+
+    console.log("before mail");
+
+try {
+  const info = await transporter.sendMail({
+    from: '"DJ Booking" <vaibhavpingale51@gmail.com>',
+    to: email,
+    subject: "Verify Your Account",
+    html: "<h1>Test Mail</h1>",
+  });
+
+  console.log("mail sent", info.response);
+} catch (err) {
+  console.log("mail error", err);
+}
     // const verifyLink = ` http://10.138.90.235:5173/verify-token/${token}`;
 
     // await transporter.sendMail({
