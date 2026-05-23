@@ -232,7 +232,7 @@ const userLogin = async (req, res) => {
       "rDRiyK6octEQz0yTLZ3o6m8QvtcIUxQkEFRyRc3U3Oa",
     );
 
-    res.Cookie("token", token);
+    res.cookie("token", token);
 
     return res.json({
       success: true,
