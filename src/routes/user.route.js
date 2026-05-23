@@ -14,5 +14,11 @@ router.post("/sendOtpRegister",sendOtpRegister)
 router.post("/reset-password",resetPassword)
 router.patch("/update-password",updatePassword)
 
+router.get("/get-response",(req,res)=>
+    {    
+       return  res.json({
+              message:"server is started to send response..,"
+        })
+    }) 
 
 export default router;
