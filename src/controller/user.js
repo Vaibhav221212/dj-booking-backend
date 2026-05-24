@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import tokenModel from "../models/tokenBL.model.js";
 import pendingUserModel from "../models/pendindUser.model.js";
+import "dotenv/config";
 
 import crypto from "crypto";
 import path from "path";
@@ -10,7 +11,7 @@ import transporter from "../services/mailService.js";
 
 const sendOtpRegister = async (req, res) => {
   try {
-    console.log("step-1")
+    console.log("step-1");
     const { name, email, mobile, role, password } = req.body;
 
     console.log(email);
@@ -20,8 +21,8 @@ const sendOtpRegister = async (req, res) => {
         message: "all feilds required",
       });
     }
-    console.log("step-2")
-    console.log("user-info:",name, email,mobile,role,password,)
+    console.log("step-2");
+    console.log("user-info:", name, email, mobile, role, password);
     const userPresent = await userModel.findOne({
       $or: [{ email }, { mobile }],
     });
@@ -53,25 +54,24 @@ const sendOtpRegister = async (req, res) => {
         new: true,
       },
     );
-     console.log("step-3")
+    console.log("step-3");
 
     const verifyLink = ` http://localhost:5173/verify-token/${token}`;
 
-
     console.log("before mail");
 
-try {
-  const info = await transporter.sendMail({
-    from: '"DJ Booking" <vaibhavpingale51@gmail.com>',
-    to: email,
-    subject: "Verify Your Account",
-    html: "<h1>Test Mail</h1>",
-  });
+    try {
+     const info= await transporter.sendMail({
+        from: `"DJ Booking" <${process.env.EMAIL_USER}>`,
+        to: email,
+        subject: "Test Mail",
+        html: "<h1>Mail Working</h1>",
+      });
 
-  console.log("mail sent", info.response);
-} catch (err) {
-  console.log("mail error", err);
-}
+      console.log("mail sent", info.response);
+    } catch (err) {
+      console.log("mail error", err);
+    }
     // const verifyLink = ` http://10.138.90.235:5173/verify-token/${token}`;
 
     // await transporter.sendMail({
@@ -82,7 +82,7 @@ try {
     //   subject: "Verify Your Account",
 
     //   html: `
-    
+
     // <div style="
     //     max-width:600px;
     //     margin:auto;
@@ -146,16 +146,15 @@ try {
     // </div>
     // `,
     // });
-        console.log("step-4")
+    console.log("step-4");
     return res.json({
       success: true,
       message: "email verification sent successfully",
     });
   } catch (e) {
+    console.log(e.message);
 
-       console.log(e.message)
-
-    console.log(e.message)
+    console.log(e.message);
 
     return res.json({
       success: false,
@@ -163,7 +162,7 @@ try {
     });
   }
 };
-    console.log("step-5")
+console.log("step-5");
 const registerUser = async (req, res) => {
   try {
     const { token } = req.body;
@@ -184,7 +183,7 @@ const registerUser = async (req, res) => {
         message: "user not found",
       });
     }
-    console.log("step-6")
+    console.log("step-6");
     if (findPending.toExpires < Date.now()) {
       return res.json({
         success: false,
@@ -210,7 +209,7 @@ const registerUser = async (req, res) => {
     );
 
     res.cookie = ("token", newToken);
-    console.log("step-7")
+    console.log("step-7");
     return res.json({
       success: true,
       message: "user register succefully",
@@ -258,22 +257,18 @@ const userLogin = async (req, res) => {
       "rDRiyK6octEQz0yTLZ3o6m8QvtcIUxQkEFRyRc3U3Oa",
     );
 
-res.cookie("token", token)
-
-
-
-
+    res.cookie("token", token);
 
     return res.json({
       success: true,
       message: "login sucessfully",
       user: user,
 
-      role:user.role,
+      role: user.role,
 
-      role:user,
+      role: user,
 
-      token:token
+      token: token,
     });
   } catch (e) {
     console.log(e);
@@ -296,7 +291,7 @@ const logout = async (req, res) => {
     return res.json({
       success: true,
       message: "logout successfully",
-       isLogout:true
+      isLogout: true,
     });
   } catch (e) {
     console.log(e.message);
@@ -368,18 +363,17 @@ const resetPassword = async (req, res) => {
   }
 };
 
-const updatePassword =async (req, res) => {
- try{
- const { newPassword,email } = req.body;
+const updatePassword = async (req, res) => {
+  try {
+    const { newPassword, email } = req.body;
 
-
-  if (!newPassword || ! email) {
-    return res.json({
-      success: false,
-      message: "please enter a password or email",
-    });
-  }
-  const isUser = await userModel.findOne({ email: email });
+    if (!newPassword || !email) {
+      return res.json({
+        success: false,
+        message: "please enter a password or email",
+      });
+    }
+    const isUser = await userModel.findOne({ email: email });
     if (!isUser) {
       return res.json({
         success: false,
@@ -387,39 +381,32 @@ const updatePassword =async (req, res) => {
       });
     }
 
-   const hasPass=await bcrypt.hash(newPassword,10)
+    const hasPass = await bcrypt.hash(newPassword, 10);
 
- isUser.password=hasPass
+    isUser.password = hasPass;
 
-    await isUser.save()
+    await isUser.save();
 
-   return res.json({
-        success: true
-      });
- }
- catch(e)
-{
-return res.json({
-        success: false,
-        message:e.message
-      });
-}
-
+    return res.json({
+      success: true,
+    });
+  } catch (e) {
+    return res.json({
+      success: false,
+      message: e.message,
+    });
+  }
 };
 
+const check = async (req, res) => {
+  await transporter.sendMail({
+    from: "DJ Booking from Dj_BABUU",
 
+    to: "vaibhavpingale51@gmail.com",
 
+    subject: "Verify Your Account",
 
-const check=async(req,res)=>
-{
-   await transporter.sendMail({
-      from: "DJ Booking from Dj_BABUU",
-
-      to: "vaibhavpingale51@gmail.com",
-
-      subject: "Verify Your Account",
-
-      html: `
+    html: `
     
     <div style="
         max-width:600px;
@@ -483,13 +470,12 @@ const check=async(req,res)=>
 
     </div>
     `,
-    });
+  });
 
   return res.json({
-    success:true
-  })
-
-}
+    success: true,
+  });
+};
 export {
   registerUser,
   userLogin,
@@ -498,5 +484,5 @@ export {
   sendOtpRegister,
   resetPassword,
   updatePassword,
-  check
+  check,
 };
