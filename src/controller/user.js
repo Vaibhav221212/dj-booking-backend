@@ -55,6 +55,8 @@ const sendOtpRegister = async (req, res) => {
     );
      console.log("step-3")
 
+    const verifyLink = ` http://localhost:5173/verify-token/${token}`;
+
 
     console.log("before mail");
 
@@ -150,7 +152,11 @@ try {
       message: "email verification sent successfully",
     });
   } catch (e) {
+
        console.log(e.message)
+
+    console.log(e.message)
+
     return res.json({
       success: false,
       message: e.message,
@@ -254,11 +260,19 @@ const userLogin = async (req, res) => {
 
 res.cookie("token", token)
 
+
+
+
+
     return res.json({
       success: true,
       message: "login sucessfully",
       user: user,
+
       role:user.role,
+
+      role:user,
+
       token:token
     });
   } catch (e) {
@@ -282,6 +296,7 @@ const logout = async (req, res) => {
     return res.json({
       success: true,
       message: "logout successfully",
+       isLogout:true
     });
   } catch (e) {
     console.log(e.message);
@@ -391,6 +406,10 @@ return res.json({
 }
 
 };
+
+
+
+
 const check=async(req,res)=>
 {
    await transporter.sendMail({
@@ -469,6 +488,7 @@ const check=async(req,res)=>
   return res.json({
     success:true
   })
+
 }
 export {
   registerUser,

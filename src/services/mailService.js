@@ -1,21 +1,17 @@
+import "dotenv/config";
 import nodemailer from "nodemailer";
 
+console.log("inside transporter");
+console.log(process.env.EMAIL_USER);
+console.log(process.env.EMAIL_PASS);
 const transporter = nodemailer.createTransport({
-  host: "smtp-relay.brevo.com",
+  host: "smtp.gmail.com",
   port: 587,
   secure: false,
-
   auth: {
-    user: "vaibhavpingale51@gmail.com",
-    pass: "aviduxcarggkrkuc",
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
   },
 });
 
-transporter.verify((error, success) => {
-  if (error) {
-    console.log("SMTP failed:", error);
-  } else {
-    console.log("SMTP connected:", success);
-  }
-});
 export default transporter;
