@@ -57,9 +57,10 @@ const sendOtpRegister = async (req, res) => {
     console.log("step-3");
 
     const verifyLink = ` http://localhost:5173/verify-token/${token}`;
-
+ 
     console.log("before mail");
-
+    console.log(process.env.EMAIL_USER);
+    console.log(process.env.EMAIL_PASS);
     // try {
     //  const info= await transporter.sendMail({
     //     from: `"DJ Booking" <${process.env.EMAIL_USER}>`,
