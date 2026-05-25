@@ -169,6 +169,7 @@ console.log("step-5");
 const registerUser = async (req, res) => {
   try {
     const { token } = req.body;
+    console.log("token:",token)
 
     console.log();
     if (!token) {
