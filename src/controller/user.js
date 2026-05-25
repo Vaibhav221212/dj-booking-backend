@@ -211,7 +211,11 @@ const registerUser = async (req, res) => {
       "rDRiyK6octEQz0yTLZ3o6m8QvtcIUxQkEFRyRc3U3Oa",
     );
 
-    res.cookie = ("token", newToken);
+  res.cookie("token", token, {
+  httpOnly: false,
+  secure: true,
+  sameSite: "none",
+});
     console.log("step-7");
     return res.json({
       success: true,
@@ -260,7 +264,11 @@ const userLogin = async (req, res) => {
       "rDRiyK6octEQz0yTLZ3o6m8QvtcIUxQkEFRyRc3U3Oa",
     );
 
-    res.cookie("token", token);
+  res.cookie("token", token, {
+  httpOnly: false,
+  secure: true,
+  sameSite: "none",
+});
 
     return res.json({
       success: true,
