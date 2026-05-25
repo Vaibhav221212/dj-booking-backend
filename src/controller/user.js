@@ -56,7 +56,7 @@ const sendOtpRegister = async (req, res) => {
     );
     console.log("step-3");
 
-    const verifyLink = ` http://localhost:5173/verify-token/${token}`;
+    const verifyLink = `https://dmixx.netlify.app/verify-token/${token}`;
  
     console.log("before mail");
     console.log(process.env.EMAIL_USER);
