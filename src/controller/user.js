@@ -264,10 +264,10 @@ const userLogin = async (req, res) => {
       "rDRiyK6octEQz0yTLZ3o6m8QvtcIUxQkEFRyRc3U3Oa",
     );
 
-  res.cookie("token", token, {
-  httpOnly: false,
-  secure: true,
-  sameSite: "none",
+res.cookie("token", token, {
+  httpOnly: false,     
+  secure: true,       
+  sameSite: "none",    
 });
 
     return res.json({
