@@ -231,10 +231,7 @@ res.cookie("token", newToken, {
 
 const userLogin = async (req, res) => {
   try {
-      return res.json({
-        success: true,
-        message: "server restarted..,",
-      });
+     
     
     const { email, password } = req.body;
     console.log(email, password);
