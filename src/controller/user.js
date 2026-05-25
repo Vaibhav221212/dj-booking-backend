@@ -9,6 +9,7 @@ import crypto from "crypto";
 import path from "path";
 import transporter from "../services/mailService.js";
 
+
 const sendOtpRegister = async (req, res) => {
   try {
     console.log("step-1");
