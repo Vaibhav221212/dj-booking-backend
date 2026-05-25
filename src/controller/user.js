@@ -211,7 +211,11 @@ const registerUser = async (req, res) => {
       "rDRiyK6octEQz0yTLZ3o6m8QvtcIUxQkEFRyRc3U3Oa",
     );
 
-  res.cookie("token", token
+res.cookie("token", newToken, {
+  httpOnly: false,     
+  secure: true,        
+  sameSite: "none", 
+});
     console.log("step-7");
     return res.json({
       success: true,
