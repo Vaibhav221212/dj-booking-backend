@@ -13,7 +13,7 @@ import transporter from "../services/mailService.js";
 const sendOtpRegister = async (req, res) => {
   try {
     console.log("step-1");
-    const { name, email, mobile, role, password } = req.body;
+    const { name, email, mobile, role, password } = req.;
 
     console.log(email);
     if (!name || !email || !mobile || !role || !password) {
