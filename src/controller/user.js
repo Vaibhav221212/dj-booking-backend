@@ -345,7 +345,7 @@ const resetPassword = async (req, res) => {
       });
     }
 
-    const url = `http://10.138.90.235:5173/reset-password/${email}`;
+    const url = `https://dmixx.netlify.app/reset-password/${email}`;
 
     await transporter.sendMail({
       from: "dj booking  from DJ_BABUU",
