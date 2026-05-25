@@ -20,7 +20,11 @@ app.use(cookieParser());
 // ✅ FIXED CORS (this was wrong in your code)
 app.use(
   cors({
-    origin: "https://dmixx.netlify.app",
+    origin: [
+      "https://dmixx.netlify.app",
+      "http://localhost:5173"
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
   })
 );
