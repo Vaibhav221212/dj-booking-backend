@@ -8,13 +8,18 @@ console.log(process.env.EMAIL_PASS);
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 587,
-  secure: false,
-  requireTLS: true,
+  secure: false, // TLS after connection
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
-  family: 4,
+
+  family: 4, // force IPv4
+
+  tls: {
+    rejectUnauthorized: false,
+  },
+
   connectionTimeout: 30000,
   greetingTimeout: 30000,
   socketTimeout: 30000,
