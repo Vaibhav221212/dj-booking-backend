@@ -8,7 +8,7 @@ import djRoutes from "./src/routes/dj.route.js";
 import bookingRoutes from "./src/routes/booking.route.js";
 import reviewRoutes from "./src/routes/review.route.js";
 import adminRoutes from "./src/routes/admin.route.js";
-
+import subscriptionRoutes from './src/routes/subscription.route.js'
 dns.setDefaultResultOrder("ipv4first");
 
 const app = express();
@@ -20,11 +20,15 @@ app.use(cookieParser());
 // ✅ FIXED CORS (this was wrong in your code)
 app.use(
   cors({
+
     origin: [
       "https://dmixx.netlify.app",
       "http://localhost:5173"
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS","PATCH"],
+
+    origin: "http://localhost:5173",
+
     credentials: true,
   })
 );
@@ -40,5 +44,5 @@ app.use(bookingRoutes);
 app.use(reviewRoutes);
 app.use("/uploads", express.static("uploads"));
 app.use(adminRoutes);
-
+app.use(subscriptionRoutes)
 export default app;

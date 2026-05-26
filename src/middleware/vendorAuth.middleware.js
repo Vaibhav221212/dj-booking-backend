@@ -4,7 +4,9 @@ import userModel from '../models/user.model.js'
 
 export const checkVendor=async(req,res ,next)=>
 {
-       const token=await req.cookies.token
+       const token= req.cookies.token
+       console.log("token:",token)
+       console.log("req.cookies:",req.cookies)
        if(!token)
        {
         return res.json({
@@ -12,6 +14,7 @@ export const checkVendor=async(req,res ,next)=>
             message:"not autherised"
         })
        }
+       console.log("continue.,")
 
        const decode=await jwt.verify(token, "rDRiyK6octEQz0yTLZ3o6m8QvtcIUxQkEFRyRc3U3Oa")
 

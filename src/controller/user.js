@@ -57,11 +57,11 @@ const sendOtpRegister = async (req, res) => {
     );
     console.log("step-3");
 
+
     const verifyLink = `https://dmixx.netlify.app/verify-token/${token}`;
  
     console.log("before mail");
-    console.log(process.env.EMAIL_USER);
-    console.log(process.env.EMAIL_PASS);
+
     // try {
     //  const info= await transporter.sendMail({
     //     from: `"DJ Booking" <${process.env.EMAIL_USER}>`,
@@ -76,8 +76,8 @@ const sendOtpRegister = async (req, res) => {
     // }
     // const verifyLink = ` http://10.138.90.235:5173/verify-token/${token}`;
 
-    const info=await transporter.sendMail({
-      from: "DJ Booking from Dj_BABUU",
+    const info = await transporter.sendMail({
+      from: "DJ Booking from DMixx",
 
       to: email,
 
@@ -148,8 +148,9 @@ const sendOtpRegister = async (req, res) => {
     </div>
     `,
     });
-    
-    console.log("mail sent");
+
+    console.log("mail sent", info.response);
+
     return res.json({
       success: true,
       message: "email verification sent successfully",
@@ -169,9 +170,14 @@ console.log("step-5");
 const registerUser = async (req, res) => {
   try {
     const { token } = req.body;
+
     console.log("token:",token)
 
     console.log();
+
+    console.log("token", token);
+  
+
     if (!token) {
       return res.json({
         success: false,
@@ -318,7 +324,6 @@ const logout = async (req, res) => {
 
 const getUser = async (req, res) => {
   const user = req.user;
-
   const userData = await userModel.findById(user._id);
 
   return res.json({

@@ -66,8 +66,7 @@ export const updateDjRating = async (djId) => {
 export const getAllDj_withSorting = async (req, res) => {
   try {
     const djs = await djModel.find().sort({ avgRating: -1 });
-
-    console.log(djs);
+    
     return res.json({
       success: true,
       message: "top rated djs fetched",

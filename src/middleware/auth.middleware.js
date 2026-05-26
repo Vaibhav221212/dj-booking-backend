@@ -5,7 +5,7 @@ export const checkUser = async (req, res, next) => {
   try {
     const { isLogin } = req.params;
     const token = req.cookies.token;
-    
+    console.log("check user token:",token)
     if (!token) {
       return res.json({
         success: false,

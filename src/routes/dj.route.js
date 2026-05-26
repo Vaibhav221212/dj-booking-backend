@@ -23,7 +23,7 @@ router.post(
   ]),
   createDjProfile,
 );
-
+// based on user search
 router.get("/getAll-dj-Profile", getDjProfiles);
 router.get("/getSingle-dj-profile/:id", getSingleProfile); // when user a click a single dj profile
 router.get("/getSingle-dj-profile-for-vendor", checkVendor, vendorProfile); //when vendor click there profile
