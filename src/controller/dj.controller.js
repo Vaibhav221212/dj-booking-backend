@@ -25,14 +25,14 @@ export const createDjProfile = async (req, res) => {
 
     // check allready create a profile
 
-    const profile = await djModel.findOne({ user: user._id });
+    // const profile = await djModel.findOne({ user: user._id });
 
-    if (profile) {
-      return res.json({
-        suucess: false,
-        messaage: "allready profilr creat",
-      });
-    }
+    // if (profile) {
+    //   return res.json({
+    //     suucess: false,
+    //     messaage: "allready profilr creat",
+    //   });
+    // }
     const result = [];
     let profileUrl;
 
