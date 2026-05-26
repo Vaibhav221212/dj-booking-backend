@@ -12,7 +12,7 @@ const userSchema=new mongoose.Schema(
             required:true,
             validate:[validator.isEmail,"invalid email"],
             lowercase:true,
-            // unique:true
+            //unique:true
         },
         mobile:
         {
