@@ -27,8 +27,6 @@ app.use(
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS","PATCH"],
 
-    origin: "http://localhost:5173",
-
     credentials: true,
   })
 );
