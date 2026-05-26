@@ -24,16 +24,16 @@ const sendOtpRegister = async (req, res) => {
     }
     console.log("step-2");
     // console.log("user-info:", name, email, mobile, role, password);
-    // const userPresent = await userModel.findOne({
-    //   $or: [{ email }, { mobile }],
-    // });
+    const userPresent = await userModel.findOne({
+      $or: [{ email }, { mobile }],
+    });
 
-    // if (userPresent) {
-    //   return res.json({
-    //     success: false,
-    //     message: "email or mobile no allready exist",
-    //   });
-    // }
+    if (userPresent) {
+      return res.json({
+        success: false,
+        message: "email or mobile no allready exist",
+      });
+    }
 
     const token = crypto.randomBytes(32).toString("hex");
 
