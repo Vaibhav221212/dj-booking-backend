@@ -323,7 +323,7 @@ const logout = async (req, res) => {
 };
 
 const getUser = async (req, res) => {
-  const user = req.user;
+  const user = req.user
   const userData = await userModel.findById(user._id);
 
   return res.json({
