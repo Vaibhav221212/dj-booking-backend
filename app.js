@@ -22,7 +22,7 @@ app.use(
   cors({
 
     origin: [
-      "https://dmixx.netlify.app",
+      "https://rmxrudra.netlify.app",
       "http://localhost:5173"
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS","PATCH"],
