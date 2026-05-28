@@ -185,7 +185,7 @@ export const acceptBooking = async (req, res) => {
 export const rejectBooking = async (req, res) => {
   try {
     const { id } = req.params;
-
+ 
     //   check allrady rejected or not
     const isBooking = await bookModel.findById(id);
     if (isBooking.status === "rejected") {

@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 export const createSubscription = async (req, res) => {
   try {
     const { vendorId, plan, amount } = req.body;
-    console.log("userdata:",vendorId, plan, amount )
+    console.log("userdata:", vendorId, plan, amount);
     // check already pending payment
     const existingSubscription = await subscriptionModel.findOne({
       vendorId,
@@ -150,20 +150,16 @@ export const checkSubscription = async (req, res) => {
       message: "vendor not subscribed",
     });
   }
-    return res.json({ success: true });
+
+  return res.json({ success: true ,endDate:isSub.endData });
 };
 
+export const cancelPayment = async (req, res) => {
+  const { id } = req.body;
+  console.log("id:=>", id);
+  await subscriptionModel.findByIdAndDelete(id);
 
-export const cancelPayment=async(req,res)=>
-{
-   const {id}=req.body
-   console.log("id:=>",id)
-      await subscriptionModel.findByIdAndDelete(id)
-
-   return res.json(
-    {
-      success:true,
-    
-    }
-   )
-}
+  return res.json({
+    success: true,
+  });
+};

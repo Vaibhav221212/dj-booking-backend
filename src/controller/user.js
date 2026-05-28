@@ -8,7 +8,7 @@ import "dotenv/config";
 import crypto from "crypto";
 import path from "path";
 import transporter from "../services/mailService.js";
-
+import { djModel } from "../models/djProfile.model.js";
 
 const sendOtpRegister = async (req, res) => {
   try {
@@ -57,9 +57,8 @@ const sendOtpRegister = async (req, res) => {
     );
     console.log("step-3");
 
-
     const verifyLink = `https://dmixx.netlify.app/verify-token/${token}`;
- 
+
     console.log("before mail");
 
     // try {
@@ -171,12 +170,11 @@ const registerUser = async (req, res) => {
   try {
     const { token } = req.body;
 
-    console.log("token:",token)
+    console.log("token:", token);
 
     console.log();
 
     console.log("token", token);
-  
 
     if (!token) {
       return res.json({
@@ -218,11 +216,11 @@ const registerUser = async (req, res) => {
       "rDRiyK6octEQz0yTLZ3o6m8QvtcIUxQkEFRyRc3U3Oa",
     );
 
-res.cookie("token", newToken, {
-  httpOnly: false,     
-  secure: true,        
-  sameSite: "none", 
-});
+    res.cookie("token", newToken, {
+      httpOnly: false,
+      secure: true,
+      sameSite: "none",
+    });
     console.log("step-7");
     return res.json({
       success: true,
@@ -238,8 +236,6 @@ res.cookie("token", newToken, {
 
 const userLogin = async (req, res) => {
   try {
-     
-    
     const { email, password } = req.body;
     console.log(email, password);
 
@@ -273,11 +269,11 @@ const userLogin = async (req, res) => {
       "rDRiyK6octEQz0yTLZ3o6m8QvtcIUxQkEFRyRc3U3Oa",
     );
 
-res.cookie("token", token, {
-  httpOnly: false,     
-  secure: true,       
-  sameSite: "none",    
-});
+    res.cookie("token", token, {
+      httpOnly: false,
+      secure: true,
+      sameSite: "none",
+    });
 
     return res.json({
       success: true,
@@ -323,14 +319,39 @@ const logout = async (req, res) => {
 };
 
 const getUser = async (req, res) => {
-  const user = req.user
-  const userData = await userModel.findById(user._id);
+  try {
+    let userData;
 
-  return res.json({
-    success: true,
-    message: "user details",
-    userData: userData,
-  });
+    let { userId, djId } = req.body;
+    const user = req.user;
+    if (userId === "null") {
+      userId = null;
+    }
+    if (djId === "null") {
+      djId = null;
+    }
+    if (!userId && !djId) {
+      userData = await userModel.findById(user._id);
+    } else if (userId) {
+      userData = await userModel.findById(userId);
+    } else if (djId) {
+      const dj= await djModel.findById(djId)
+      userData = await userModel.findById({ _id: dj.user });
+    }
+
+    return res.json({
+      success: true,
+      message: "user details",
+      userData,
+    });
+  } catch (e) {
+    console.log(e.message);
+
+    return res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+    });
+  }
 };
 
 const resetPassword = async (req, res) => {
