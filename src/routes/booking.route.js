@@ -20,7 +20,7 @@ router.delete("/cancel-booking/:id", checkUser, cancelBooking);
 // not need currently
 router.get("/get-single-booking/:id", checkUser, getsingleBooking); //not need currently
 
-router.get("/get-all-user-bookings/:role", userBookings);
+router.get("/get-all-user-bookings/:role",checkUser, userBookings);
 router.get("/get-all-vendor-bookings",checkVendor,vendorBooking);
 router.patch("/accept-booking/:id",checkVendor,acceptBooking);
 router.patch("/reject-booking/:id",checkVendor,rejectBooking);
