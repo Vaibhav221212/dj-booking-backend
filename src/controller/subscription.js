@@ -150,6 +150,7 @@ export const checkSubscription = async (req, res) => {
       message: "vendor not subscribed",
     });
   }
+    return res.json({ success: true });
 };
 
 
