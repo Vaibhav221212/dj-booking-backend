@@ -115,6 +115,7 @@ export const userBookings = async (req, res) => {
       bookings: bookings,
     });
   } catch (e) {
+    console.log(e.message)
     return res.json({
       success: false,
       message: e.message,
