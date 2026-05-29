@@ -168,13 +168,7 @@ const sendOtpRegister = async (req, res) => {
 console.log("step-5");
 const registerUser = async (req, res) => {
   try {
-    const { token } = req.body;
-
-    console.log("token:", token);
-
-    console.log();
-
-    console.log("token", token);
+    const { token } = req.body
 
     if (!token) {
       return res.json({
@@ -191,7 +185,7 @@ const registerUser = async (req, res) => {
         message: "user not found",
       });
     }
-    console.log("step-6");
+
     if (findPending.toExpires < Date.now()) {
       return res.json({
         success: false,
@@ -215,13 +209,14 @@ const registerUser = async (req, res) => {
       { id: user._id },
       "rDRiyK6octEQz0yTLZ3o6m8QvtcIUxQkEFRyRc3U3Oa",
     );
+const options = {
+  httpOnly: true,
+  secure: true,
+  sameSite: "none",
+  maxAge: 7 * 24 * 60 * 60 * 1000,
+};
 
-    res.cookie("token", newToken, {
-      httpOnly: false,
-      secure: true,
-      sameSite: "none",
-    });
-    console.log("step-7");
+res.cookie("token", newToken, options);
     return res.json({
       success: true,
       message: "user register succefully",
@@ -269,11 +264,14 @@ const userLogin = async (req, res) => {
       "rDRiyK6octEQz0yTLZ3o6m8QvtcIUxQkEFRyRc3U3Oa",
     );
 
-    res.cookie("token", token, {
-      httpOnly: false,
-      secure: true,
-      sameSite: "none",
-    });
+const options = {
+  httpOnly: true,
+  secure: true,
+  sameSite: "none",
+  maxAge: 7 * 24 * 60 * 60 * 1000,
+};
+
+res.cookie("token", token, options);
 
     return res.json({
       success: true,
